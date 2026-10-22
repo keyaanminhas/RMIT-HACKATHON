@@ -4,7 +4,7 @@ Next.js App Router, TypeScript, Prisma and SQLite. The final consortium HTML is 
 
 ## Sample workspace
 
-Open **View sample workspace** to explore isolated, in-memory fictional records. The sample uses browser AES-GCM encryption and HMAC indexing with temporary local keys. Its member selector, approvals and evidence windows belong only to that workspace: they do not authenticate a Tide user, call protected APIs or issue live Tide grants. Reloading restores the initial records. Follow the [demo guide](../DEMO.md) for exact accounts, requests, member selections and expected results.
+Open `http://localhost:3000/?sample=bank-b` directly, or choose a sample user and click **Continue as sample user**, to explore isolated, in-memory fictional records without a password. The sample uses browser AES-GCM encryption and HMAC indexing with temporary local keys. Its member selector, approvals and evidence windows belong only to that workspace: they do not authenticate a Tide user, call protected APIs or issue live Tide grants. Reloading restores the initial records and retains the selected member through the URL. **Exit sample** removes that parameter. Follow the [demo guide](../DEMO.md) for exact accounts, requests, member selections and expected results.
 
 ## Run and verify
 

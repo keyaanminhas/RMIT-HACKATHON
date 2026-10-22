@@ -28,15 +28,15 @@ npm.cmd run build
 npm.cmd start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and click **View sample workspace**. Keep the terminal running. On macOS/Linux, use `npm` in place of `npm.cmd`. For development, use `npm.cmd run dev` instead of building and starting.
+Open [http://localhost:3000/?sample=bank-b](http://localhost:3000/?sample=bank-b) to enter directly as the sample Bank B requester, with no account or password. Alternatively select a sample user on the sign-in screen and click **Continue as sample user**. Keep the terminal running. On macOS/Linux, use `npm` in place of `npm.cmd`. For development, use `npm.cmd run dev` instead of building and starting.
 
-The sample workspace can be explored without completing Tide enrolment. A missing adapter may display a setup message; choose **View sample workspace** to continue. Sample changes live in browser memory and reset on page reload. Authenticated API data persists in the local SQLite database.
+The sample workspace can be explored without completing Tide enrolment. A missing adapter may display a setup message; choose **Continue as sample user** to continue. Sample changes live in browser memory and reset on page reload; the selected sample member stays in the URL. **Exit sample** returns to the real sign-in screen. Authenticated API data persists in the local SQLite database.
 
 See [app setup](app/README.md) for application configuration and checks.
 
 ## Demo in 3–5 minutes
 
-1. Open **View sample workspace** and show the overview: five reports and three members.
+1. Open **Continue as sample user** and show the overview: five reports and three members.
 2. In **Account Check**, search `0189 4420 1173` to show two matching reports with sealed evidence.
 3. Select **Telco C** using **Sample member**, open **Disclosures**, and approve `DSC-902`. Switch back to **Bank B** to open its evidence.
 4. As **Telco C**, vote Yes on the E-wallet admission proposal in **Governance**. The proposal passes and membership increases to four.

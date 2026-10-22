@@ -11,9 +11,18 @@ const listeners = new Set<() => void>();
 const emit = () => { version++; for (const listener of listeners) listener(); };
 const subscribe = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; };
 const orgNames: Record<string, string> = { 'bank-a': 'Bank A', 'bank-b': 'Bank B', 'telco-c': 'Telco C', operator: 'Sample operator' };
+function updateSampleUrl(value: string | null) {
+  const url = new URL(window.location.href);
+  if (value) url.searchParams.set('sample', value); else url.searchParams.delete('sample');
+  window.history.replaceState(window.history.state, '', url);
+}
+export function startSampleWorkspace(value = 'bank-b') {
+  if (!Object.prototype.hasOwnProperty.call(orgNames, value)) return;
+  active = true; actor = value; updateSampleUrl(actor); emit();
+}
 export function useSampleWorkspace() {
   useSyncExternalStore(subscribe, () => version, () => 0);
-  return { active, actor, start: () => { active = true; actor = 'bank-b'; emit(); }, exit: () => { active = false; emit(); }, setActor: (value: string) => { actor = value; emit(); } };
+  return { active, actor, start: startSampleWorkspace, exit: () => { active = false; updateSampleUrl(null); emit(); }, setActor: (value: string) => { if (!Object.prototype.hasOwnProperty.call(orgNames, value)) return; actor = value; updateSampleUrl(actor); emit(); } };
 }
 export function useVault() {
   const real = live.useVault();

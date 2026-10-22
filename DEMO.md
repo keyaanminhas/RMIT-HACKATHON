@@ -12,9 +12,20 @@ npm.cmd run build
 npm.cmd start
 ```
 
-Open [http://localhost:3000](http://localhost:3000), click **View sample workspace**, and leave the terminal open. On macOS/Linux use `npm` instead of `npm.cmd`. For local development, `npm.cmd run dev` replaces the build/start commands.
+Open [http://localhost:3000/?sample=bank-b](http://localhost:3000/?sample=bank-b) to enter directly as the sample Bank B requester. No password or Tide account is required. Alternatively open [http://localhost:3000](http://localhost:3000), choose a sample user and click **Continue as sample user**. Leave the terminal open. On macOS/Linux use `npm` instead of `npm.cmd`. For local development, `npm.cmd run dev` replaces the build/start commands.
 
-If the app is already running, simply open the URL. The sample workspace is available while Tide enrolment is incomplete; it needs no personal Tide login. A Tide setup message concerns the live workspace and does not prevent using **View sample workspace**.
+If the app is already running, simply open the URL. The sample workspace is available while Tide enrolment is incomplete; it needs no personal Tide login. A Tide setup message concerns the live workspace and does not prevent using **Continue as sample user**.
+
+Direct sample-user links:
+
+| User | Local URL |
+| --- | --- |
+| Bank B · Requester | [Open Bank B](http://localhost:3000/?sample=bank-b) |
+| Bank A · Reporter | [Open Bank A](http://localhost:3000/?sample=bank-a) |
+| Telco C · Independent approver | [Open Telco C](http://localhost:3000/?sample=telco-c) |
+| Operator | [Open Operator](http://localhost:3000/?sample=operator) |
+
+Switch members with the in-page selector to preserve your current sample decisions. Opening a new page or refreshing restores the starting records. **Exit sample** removes the sample URL parameter and returns to real sign-in.
 
 ## Opening explanation
 
@@ -96,12 +107,12 @@ Explain: “The audit chain checks continuity of recorded events. It is not an i
 
 ## Reset and troubleshooting
 
-- **Restart the walkthrough:** refresh the page and select **View sample workspace** again. This restores five reports and three members; sample submissions and decisions are cleared.
+- **Restart the walkthrough:** refresh a direct sample-user URL, or refresh the home page and choose **Continue as sample user**. This restores five reports and three members; sample submissions and decisions are cleared.
 - **Request is already approved or proposal already passed:** refresh for the initial state.
 - **Evidence cannot open:** use Bank B, check that both required organisations approved, and check the 30-minute window. Refresh if the prepared grant expired.
 - **Member action unavailable:** change the selector from Operator to a member organisation.
 - **Page cannot connect:** start the app from `app/` and keep its terminal running. Check whether another process already occupies port 3000 before starting a second instance.
-- **Tide login fails:** return to the app and choose **View sample workspace** for the presentation. Follow [TideCloak setup](docs/TIDECLOAK_SETUP.md) separately for the live integration.
+- **Tide login fails:** return to the app and choose **Continue as sample user** for the presentation. Follow [TideCloak setup](docs/TIDECLOAK_SETUP.md) separately for the live integration.
 
 ## Current live integration status
 
