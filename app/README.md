@@ -4,7 +4,7 @@ Next.js App Router, TypeScript, Prisma and SQLite. The final consortium HTML is 
 
 ## Sample workspace
 
-The sample workspace uses isolated in-memory synthetic fixtures and simulated UI workflows. It does not authenticate a user, call protected APIs, claim Tide encryption or issue real evidence grants. Its labels distinguish this preview from real security enforcement. Reloading clears its transient changes. Use the real sign-in path to access the protected multi-user application once Tide provisioning is complete.
+Open **View sample workspace** to explore isolated, in-memory fictional records. The sample uses browser AES-GCM encryption and HMAC indexing with temporary local keys. Its member selector, approvals and evidence windows belong only to that workspace: they do not authenticate a Tide user, call protected APIs or issue live Tide grants. Reloading restores the initial records. Follow the [demo guide](../DEMO.md) for exact accounts, requests, member selections and expected results.
 
 ## Run and verify
 
@@ -28,4 +28,4 @@ The API provides configuration/capability status, verified session, dashboard, o
 
 Audit events contain identifiers and outcome labels. The chain detects partial edits; it is not immutable and cannot prevent a database operator rewriting the entire chain. Operator inspection returns actual stored ciphertext/workflow records. No request bodies, tokens, plaintext evidence or account identifiers are intentionally logged. Timing, report counts, organisations and opaque lookup correlations remain visible to the operator.
 
-Synthetic fixtures must be encrypted by enrolled browser members. Server-side plaintext seed keys, demo role toggles and simulated evidence grants are absent. Full multi-user acceptance requires Tide availability, independent enrolled identities and verified policies; local tests alone do not satisfy these external gates.
+The live workspace requires reports to be encrypted by enrolled browser members. Its server has no plaintext seed keys or sample-member override. The separate sample workspace never grants access to live data. Full multi-user acceptance requires Tide availability, independent enrolled identities and verified policies; local tests alone do not satisfy these external gates.
