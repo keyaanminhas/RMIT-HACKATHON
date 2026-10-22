@@ -1,0 +1,41 @@
+================================================================================
+RMIT HACKATHON 2026 — CHALLENGE 2 (UNLOCKED WITH TIDECLOAK)
+EXECUTIVE SUMMARY: NEUTRALVAULT
+================================================================================
+
+1. THE REAL-WORLD PROBLEM
+Scam syndicates rely heavily on "mule" bank accounts and prepaid mobile lines to rapidly layer and cash out stolen victim funds before law enforcement can act. In Malaysia, the National Scam Response Centre (NSRC) handled 66,997 calls and disrupted 59,684 suspected mule accounts in 2023 alone (Bank Negara Malaysia Annual Report, March 2024). While the National Fraud Portal (launched in August 2024 by BNM and PayNet) coordinates formal intelligence sharing among financial institutions, intelligence sharing across competing banks, telcos, and non-bank e-wallets remains constrained by severe trust bottlenecks.
+
+2. THE TRUST CONSTRAINT
+- Privacy & Bank Secrecy: Under Section 133 of the Financial Services Act 2013 (FSA), financial institutions owe a strict statutory duty of secrecy to customers. Narrow exceptions permit sharing only in cases of suspected criminal offences, meaning bulk or speculative sharing of raw account lists is legally prohibited.
+- Custody Vulnerability: Centralizing all cross-institutional mule reports into a single database creates an immense breach target. Whoever hosts the pool possesses full custody over confidential customer financial records.
+- Unilateral Authority: In conventional cloud platforms, cloud administrators or rogue database engineers have unilateral authority to view plaintext databases, alter access rules, and decrypt files without customer or competitor consent.
+- Competitive Reluctance: Rival banks and payment providers are unwilling to surrender their customer lists or internal investigation evidence to a central platform vendor or rival institution.
+
+3. THE NEUTRALVAULT SOLUTION
+NeutralVault is an operator-blind, member-governed mule account signal exchange. It allows banks, telcos, and e-wallets to pool and verify fraud signals without giving the platform operator custody of customer data.
+- Blinded Tier-1 Checks: Member institutions check suspect account numbers or phone numbers against the shared pool using HMAC-SHA256 hashes generated from an ineffable secret key. If a match is found, only the high-level reason code (e.g., R02 Rapid Pass-Through Mule) and severity are returned.
+- Hermetic End-to-End Encryption (Tier-2): Detailed case evidence (bank statements, victim transaction receipts, IP logs) is encrypted client-side in the analyst's browser using Tide tags [tier1, evidence].
+- Multi-Party Quorum Release: Evidence can only be unlocked when two distinct member organizations cryptographically approve the disclosure request. Requesters are strictly prohibited from approving their own requests.
+- Ephemeral Time-Locks: Approved evidence leases automatically expire after 90 seconds (30 minutes in production), shredding ephemeral session keys from memory (HTTP 410 Gone).
+- Collective Governance: Altering access rules or admitting new members (e.g., e-wallets) requires a 70% supermajority cryptographic vote across member compliance officers.
+
+4. WHY TIDECLOAK MATTERS: THE SWAP TEST
+The core differentiator of NeutralVault is TideCloak’s Emergent Authority and Ineffable Cryptography:
+- The Swap Test: If NeutralVault were built on conventional IAM (such as Auth0, Okta, or AWS KMS), the cloud database administrator would hold master decryption keys or could grant themselves administrative roles with a single SQL or API command. In our "Operator Breach" demonstration, the operator dumps the entire database and obtains only blind HMAC hashes and ciphertext.
+- Quorum-Enforced Authorization (QEA): When an operator attempts to assign themselves the `_tide_evidence.selfdecrypt` role to spy on evidence, TideCloak's QEA traps the request as an uncommitted change request (1 of 2 signatures required). The operator is mathematically blocked from privilege escalation.
+- Zero Server Plaintext: Master encryption keys are never constructed on the server or in memory; they exist only as fragments distributed across independent ORK nodes in the Tide Cybersecurity Fabric.
+
+5. IMPLEMENTATION & DEMONSTRATION SUMMARY
+The prototype application is built using React, Vite, WebCrypto, and the TideCloak SDK. It demonstrates:
+1. Blinded signal verification for Bank A, Bank B, and Telco suspect identifiers.
+2. Client-side encrypted mule report filing with zero server plaintext exposure.
+3. Tier-2 disclosure workflow with enforced policy rules (no self-approval, distinct-org quorum).
+4. Ephemeral lease countdown and active client key shredding.
+5. QEA governance vote successfully admitting Touch 'n Go E-Wallet to the network.
+6. The Adversarial Operator Breach Console, proving zero PII leakage during a complete cloud storage exfiltration.
+
+================================================================================
+AUTHORS: Aung Zay Htet (Team RMIT Challenge 2)
+SUBMISSION DEADLINE: 22 October 2026, 6:00 PM MYT
+================================================================================
