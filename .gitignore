@@ -6,6 +6,13 @@ app/dist/
 
 # TideCloak client config (generated from the local node)
 app/public/tidecloak.json
+data/tidecloak.json
+
+# Local TideCloak credentials and licence configuration
+.env
+.env.*
+!.env.example
+.tide-pack/
 
 # OS / editor
 .DS_Store

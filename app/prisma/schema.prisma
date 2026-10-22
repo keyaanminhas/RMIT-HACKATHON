@@ -1,0 +1,89 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "sqlite"
+ url = "file:./neutralvault.db"
+}
+model Organisation {
+ id String @id
+ name String
+ kind String
+ status String @default("pending")
+}
+model Report {
+ id String @id @default(cuid())
+ reportingOrgId String
+ indexHash String
+ tier1Ciphertext String
+ evidenceCiphertext String
+ createdAt DateTime @default(now())
+ authorId String
+ submissionId String @unique
+ @@index([indexHash])
+}
+model IndexKey {
+ id String @id @default("consortium")
+ ciphertext String
+}
+model Disclosure {
+ id String @id @default(cuid())
+ reportId String
+ requesterUserId String
+ requesterOrgId String
+ caseReference String
+ status String @default("pending")
+ createdAt DateTime @default(now())
+ expiresAt DateTime?
+ policyRequestId String?
+ decisions Decision[]
+ @@unique([reportId,requesterUserId,caseReference])
+}
+model Decision {
+ id String @id @default(cuid())
+ disclosureId String
+ disclosure Disclosure @relation(fields:[disclosureId],references:[id])
+ orgId String
+ userId String
+ decision String
+ createdAt DateTime @default(now())
+ @@unique([disclosureId,orgId])
+}
+model Proposal {
+ id String @id @default(cuid())
+ kind String
+ title String
+ payload String
+ status String @default("open")
+ authorId String
+ createdAt DateTime @default(now())
+ electorate String
+ threshold Int
+ votes Vote[]
+}
+model Vote {
+ id String @id @default(cuid())
+ proposalId String
+ proposal Proposal @relation(fields:[proposalId],references:[id])
+ orgId String
+ userId String
+ choice String
+ createdAt DateTime @default(now())
+ @@unique([proposalId,orgId])
+}
+model AuditEvent {
+ sequence Int @id @default(autoincrement())
+ id String @unique @default(cuid())
+ ts DateTime @default(now())
+ actorUserId String
+ actorOrgId String
+ action String
+ targetId String
+ result String
+ previousHash String
+ hash String
+}
+model DpopReplay {
+ id String @id
+ expiresAt DateTime
+}
