@@ -36,6 +36,8 @@ See [app setup](app/README.md) for application configuration and checks.
 
 ## Demo in 3–5 minutes
 
+[Watch or download the project video](docs/media/neutralvault-demo.mp4) — 720p MP4 with audio, compressed below 25 MB.
+
 1. Open **Continue as sample user** and show the overview: five reports and three members.
 2. In **Account Check**, search `0189 4420 1173` to show two matching reports with sealed evidence.
 3. Select **Telco C** using **Sample member**, open **Disclosures**, and approve `DSC-902`. Switch back to **Bank B** to open its evidence.

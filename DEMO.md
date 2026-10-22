@@ -1,5 +1,7 @@
 # NeutralVault demo guide
 
+[Watch or download the project video](docs/media/neutralvault-demo.mp4) — a compressed 720p MP4 with audio (under 25 MB).
+
 ## Start the app
 
 From the repository root in PowerShell:
