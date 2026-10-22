@@ -1,0 +1,25 @@
+services:
+  tidecloak-volume-init:
+    image: tideorg/tidecloak-dev:latest
+    user: "0:0"
+    network_mode: none
+    entrypoint: ["/bin/sh"]
+    command: ["-c", "chown 1000:0 /opt/keycloak/data/h2 && chmod 0770 /opt/keycloak/data/h2"]
+    volumes:
+      - tidecloak-data:/opt/keycloak/data/h2
+
+  tidecloak:
+    image: tideorg/tidecloak-dev:latest
+    depends_on:
+      tidecloak-volume-init:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD:?Set KC_BOOTSTRAP_ADMIN_PASSWORD in .env}
+    volumes:
+      - tidecloak-data:/opt/keycloak/data/h2
+
+volumes:
+  tidecloak-data:
