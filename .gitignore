@@ -1,0 +1,13 @@
+# dependencies / build
+node_modules/
+app/node_modules/
+dist/
+app/dist/
+
+# TideCloak client config (generated from the local node)
+app/public/tidecloak.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
